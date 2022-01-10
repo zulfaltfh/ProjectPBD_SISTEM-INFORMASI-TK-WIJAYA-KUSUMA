@@ -30,13 +30,13 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Daftar Nilai Bulanan</h3>
+                                <h3>Daftar Raport Siswa</h3>
                             </div>
                             <div class="col-12 col-md order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Penilaian Bulanan</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Raport</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -49,7 +49,7 @@
                                     <a href="tambah-tugas.php" class="btn btn-sm btn-primary">+ Tambah Tugas</a>
                                 </div> -->
                                 <table class="table table-striped" id="table1">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
                                             <th>NIS</th>
                                             <th>Nama Siswa</th>
@@ -69,7 +69,7 @@
                                                 <td><?php echo $result['nama_ruang_kelas']; ?></td>
                                                 <td><?php echo $result['tahunajar']; ?></td>
                                                 <td><?php echo $result['tingkatTK']; ?></td>
-                                                <td><a href="nilbul-siswa.php?id=<?php echo $result['noinduk_siswa']; ?>" class="btn btn-sm btn-primary">Detail</a></td>
+                                                <td><a href="detail-raport.php?id=<?php echo $result['noinduk_siswa']; ?>" class="btn btn-sm btn-primary">Detail</a></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

@@ -14,7 +14,7 @@
         $hasil  = mysqli_query($connect, $insert);
 
         echo "<script>alert('Nilai berhasil ditambahkan !');</script>";
-        echo "<script>location.href='../nilhar-siswa.php?id=$noinduk_siswa'</script>"; 
+        echo "<script>location.href='nilhar-siswa.php?id=$noinduk_siswa'</script>"; 
     }
 
     //proses tambah detail nilai harian
@@ -32,19 +32,34 @@
         echo "<script>alert('Nilai berhasil ditambahkan !');</script>";
         echo "<script>location.href='detail-nilhar.php?id=$id_nilai_harian'</script>"; 
     }
+
+    //proses tambah data pada tabel nilai bulanan
     if (isset($_POST['add'])){
 
         $noinduk_siswa          = $_POST['noinduk_siswa'];
-        $tgl_ambil              = $_POST['tgl_ambil_nilai'];
-        $id_kriteria_bulanan    = $_POST['id_kriteria_bulanan'];
-        $nilai_kkm              = $_POST['nilai_kkm'];
-        $nilai_bul              = $_POST['nilai_bul'];
+        $bulan_ambil            = $_POST['bulan_ambil_nilai'];
 
         
-        $insert = "INSERT INTO penilaian_bul VALUES ('$noinduk_siswa','$id_kriteria_bulanan','$nilai_kkm','$nilai_bul','$tgl_ambil')";
+        $insert = "INSERT INTO nilai_bulanan VALUES (null,'$noinduk_siswa','$bulan_ambil')";
         $hasil  = mysqli_query($connect, $insert);
 
         echo "<script>alert('Nilai berhasil ditambahkan !');</script>";
-        echo "<script>location.href='../detail-nilbul.php?id=". $noinduk_siswa .".php'</script>"; 
+        echo "<script>location.href='nilbul-siswa.php?id=$noinduk_siswa'</script>"; 
+    }
+
+    //proses tambah detail nilai bulanan
+    if (isset($_POST['add1'])){
+
+        $id_nilai_bulanan    = $_POST['id_nilai_bulanan'];
+        $id_kriteria_bulanan = $_POST['id_kriteria_bulanan'];
+        $nilai_kkm          = $_POST['nilai_kkm'];
+        $nilai_bul          = $_POST['nilai_bul'];
+
+        
+        $insert = "INSERT INTO terdiri2 VALUES ('$id_nilai_bulanan','$id_kriteria_bulanan','$nilai_bul','$nilai_kkm')";
+        $hasil  = mysqli_query($connect, $insert);
+
+        echo "<script>alert('Nilai berhasil ditambahkan !');</script>";
+        echo "<script>location.href='detail-nilbul.php?id=$id_nilai_bulanan'</script>"; 
     }
 ?>

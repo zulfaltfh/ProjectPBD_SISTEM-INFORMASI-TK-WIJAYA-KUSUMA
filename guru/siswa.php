@@ -8,7 +8,7 @@
 	include "../config/config.php";
 
     //ambil data dari db
-    $query = "SELECT * FROM siswa";
+    $query = "SELECT * FROM siswa WHERE status_daftar = '1' ";
     $db = mysqli_query($connect, $query);
     $counter = 1;
 

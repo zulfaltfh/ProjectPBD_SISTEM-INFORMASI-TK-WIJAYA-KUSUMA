@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <?php include '../layout-guru/header.php' ?>
+    <?php include '../layout/header.php' ?>
 </head>
 <?php 
 	include "../config/config.php";
@@ -19,10 +19,10 @@
 ?>
 <body>
     <div id="app">
-        <?php include "../layout-guru/sidebar.php" ?>
+        <?php include "../layout/sidebar.php" ?>
 
         <div id="main" class='layout-navbar'>
-            <?php include "../layout-guru/navbar.php" ?>
+            <?php include "../layout/navbar.php" ?>
 
             <div id="main-content">
                 <div class="page-heading">
@@ -64,7 +64,7 @@
                                                 <td><?php echo $pembayaran['tgl_bayar']?></td>
                                                 <td><?php echo $pembayaran['jumlah_bayar']?></td>
                                                 <td>
-                                                  <a href="" class="btn btn-secondary-disable  btn-block btn-sm shadow-lg mt-0">VERIFIED</a>
+                                                  <a href="" class="btn btn-secondary-disable  btn-block btn-sm">VERIFIED</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -76,7 +76,7 @@
                     </section>
                 </div>
                 
-                <?php include "../layout-guru/footer.php" ?>
+                <?php include "../layout/footer.php" ?>
             </div>
         </div>
     </div>

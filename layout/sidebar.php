@@ -21,6 +21,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item ">
+                    <a href="../guru/registrasi.php" class='sidebar-link'>
+                        <i class="bi bi-check-circle-fill"></i>
+                            <span>Verifikasi Registrasi</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item">
                     <a href="../guru/siswa.php" class='sidebar-link'>
                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
@@ -56,7 +63,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    <a href="../guru/index-raport.php" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Raport</span>
                     </a>

@@ -9,8 +9,9 @@
     session_start();
     
     //ambil data dari db
-    // $db1    = mysqli_query($connect, "SELECT * FROM nilai_harian WHERE id_nilai_harian = '".$_GET['id']."'");
-    // $counter = 1;
+    $query = "SELECT * FROM siswa_vu WHERE noinduk_siswa = '".$_GET['id']."'";
+    $db = mysqli_query($connect, $query);
+    $counter = 1;
 
     // $kriteria = mysqli_query($connect, "SELECT p.tgl_ambil_nilai, k.id_kriteria_harian, k.nama_kriteria_harian, p.nilai_kkm, p.nilai_har 
     //                             FROM penilaian_har p, kriteria_nilai_harian k 
@@ -38,8 +39,8 @@
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="dashboard.php">..</a></li>
-                                        <li class="breadcrumb-item" aria-current="page"><a href="index_nilhar.php">Penilaian Harian</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Detail Nilai Harian Siswa</li>
+                                        <li class="breadcrumb-item" aria-current="page"><a href="index_nilbul.php">Penilaian Bulanan</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Nilai Bulanan Siswa</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -52,69 +53,70 @@
                                 <div class="card">
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <?php
-                                                $getID = $_GET['id'];
-                                                $db     = mysqli_query($connect, "SELECT * FROM detnilhar_vu WHERE id_nilai_harian = '$getID'");
-                                                $counter = 1;
-
-                                            ?>
-                                            <!-- <div class="table-responsive-sm">
+                                            <div class="table-responsive-sm">
+                                                <?php 
+                                                    while($row = mysqli_fetch_array($db)) {  
+                                                ?>
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
-                                                        <?php while($row = mysqli_fetch_array($db)) { ?>
                                                         <tr>
                                                             <td style="width: 5%;"><b>NIS</b></td>
                                                             <td class="text-center" style="width: 0%;"><b>:</b></td>
                                                             <td class="text-bold-500"><?php echo $row['noinduk_siswa']; ?></td>
+                                                            <td style="width: 15%;"><b>Tahun Ajaran</b></td>
+                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
+                                                            <td class="text-bold-500"><?php echo $row['tahunajar']; ?></td>
+                                                            
                                                         </tr>
-                                                        <?php } ?>
+                                                        <tr>
+                                                            <td style="width: 5%;"><b>Nama</b></td>
+                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
+                                                            <td class="text-bold-500"><?php echo $row['nama_siswa']; ?></td>
+                                                            <td style="width: 15%;"><b>Tingkat TK</b></td>
+                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
+                                                            <td class="text-bold-500"><?php echo $row['tingkatTK']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 5%;"><b>Kelas</b></td>
+                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
+                                                            <td class="text-bold-500"><?php echo $row['nama_ruang_kelas']; ?></td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
+                                                <?php } ?>
                                             </div>
-                                            <hr>  -->
-                                            <!--Divider -->
+                                            <hr> <!-- Divider -->
+                                            <?php
+                                                // $query = "SELECT * FROM nilai_har WHERE noinduk_siswa = '".$_GET['id']."'";
+                                                // $db1 = mysqli_query($connect,$query);
+                                                $db1 = mysqli_query($connect, "SELECT * FROM nilai_bulanan WHERE noinduk_siswa = '".$_GET['id']."'");
+                                                // $ambil = $db1->fetch_assoc();
+                                                // $data = $ambil['id_nilai_harian'];
+                                                
+                                            ?>
                                             <div class="d-flex flex-row mb-4">
-                                                <a href="tambah-detail-nilhar.php?id=<?php echo $getID;?>" class="btn btn-sm btn-primary">+ Tambah</a>
+                                                <a href="tambah-nilbul.php?id=<?php echo $_GET['id'];?>" class="btn btn-sm btn-primary">+ Tambah</a>
                                             </div>
                                             <table class="table table-striped" id="table1">
-                                                <thead class="text-center">
+                                                <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Kriteria Nilai</th>
-                                                        <th>KKM</th>
-                                                        <th>Skor</th>
-                                                        <th>Keterangan</th>
+                                                        <th>ID Nilai Bulanan</th>
+                                                        <th>Tanggal Ambil</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($db as $result) : ?>
-                                                    <tr>
-                                                        <td><?php echo $counter; ?></td>
-                                                        <td><?php echo $result['nama_kriteria_harian']; ?></td>
-                                                        <td><?php echo $result['nilai_kkm']; ?></td>
-                                                        <td><?php echo $result['nilai_har']; ?></td>
-                                                        <?php
-                                                            if ($result['nilai_kkm'] <= $result['nilai_har']) {
-                                                        ?>
-                                                        <td class="btn-azure">Tuntas</td>
-                                                        <?php
-                                                            }else{
-                                                        ?>
-                                                        <td class="btn-azure">Tidak Tuntas</td>
-                                                        <?php
-                                                            } 
-                                                        ?>
-                                                        <td>
-                                                            <a href="edit-detail-nilhar.php?id=<?php echo $result['id_nilai_harian']; ?>" class="btn btn-sm btn-info">Edit</a>
-                                                            <a href="hapus-detail-nilhar.php?id=<?php echo $result['id_kriteria_harian']; ?>">
-                                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
                                                     <?php 
-                                                        $counter++;
-                                                        endforeach 
+                                                        while($result = mysqli_fetch_assoc($db1)) {  
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $result['id_nilai_bulanan']; ?></td>
+                                                            <td><?php echo $result['bulan_ambil_nilai']; ?></td>
+                                                            <td><a href="detail-nilbul.php?id=<?php echo $result['id_nilai_bulanan']; ?>" class="btn btn-sm btn-primary">Detail</a></td>
+                                                        </tr>
+                                                    <?php
+                                                        $counter++; 
+                                                        } 
                                                     ?>
                                                 </tbody>
                                             </table>

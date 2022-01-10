@@ -9,10 +9,9 @@
     session_start();
     
     //ambil data dari db
-    $query = "SELECT * FROM siswa_vu WHERE noinduk_siswa = '".$_GET['id']."'";
-    $db = mysqli_query($connect, $query);
-    $counter = 1;
-    
+    // $db1    = mysqli_query($connect, "SELECT * FROM nilai_harian WHERE id_nilai_harian = '".$_GET['id']."'");
+    // $counter = 1;
+
     // $kriteria = mysqli_query($connect, "SELECT p.tgl_ambil_nilai, k.id_kriteria_harian, k.nama_kriteria_harian, p.nilai_kkm, p.nilai_har 
     //                             FROM penilaian_har p, kriteria_nilai_harian k 
     //                             WHERE k.id_kriteria_harian = p.id_kriteria_harian 
@@ -38,9 +37,9 @@
                             <div class="col-12 col-md order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="../dashboard.php">..</a></li>
-                                        <li class="breadcrumb-item" aria-current="page"><a href="../penilaian-bulanan/index_nilbul.php">Penilaian Bulanan</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Detail Nilai Siswa</li>
+                                        <li class="breadcrumb-item"><a href="dashboard.php">..</a></li>
+                                        <li class="breadcrumb-item" aria-current="page"><a href="index_nilbul.php">Penilaian Bulanan</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Detail Nilai Bulanan Siswa</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -53,53 +52,19 @@
                                 <div class="card">
                                     <div class="card-content">
                                         <div class="card-body">
-                                            <div class="table-responsive-sm">
-                                                <?php 
-                                                    while($row = mysqli_fetch_array($db)) {  
-                                                ?>
-                                                <table class="table table-borderless mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="width: 5%;"><b>NIS</b></td>
-                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
-                                                            <td class="text-bold-500"><?php echo $row['noinduk_siswa']; ?></td>
-                                                            <td style="width: 15%;"><b>Tahun Ajaran</b></td>
-                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
-                                                            <td class="text-bold-500"><?php echo $row['tahunajar']; ?></td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 5%;"><b>Nama</b></td>
-                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
-                                                            <td class="text-bold-500"><?php echo $row['nama_siswa']; ?></td>
-                                                            <td style="width: 15%;"><b>Tingkat TK</b></td>
-                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
-                                                            <td class="text-bold-500"><?php echo $row['tingkatTK']; ?></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 5%;"><b>Kelas</b></td>
-                                                            <td class="text-center" style="width: 0%;"><b>:</b></td>
-                                                            <td class="text-bold-500"><?php echo $row['nama_ruang_kelas']; ?></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <?php } ?>
-                                            </div>
-                                            <hr> <!-- Divider -->
                                             <?php
-                                                // $query = "SELECT * FROM nilai_har WHERE noinduk_siswa = '".$_GET['id']."'";
-                                                // $db1 = mysqli_query($connect,$query);
-                                                $db1 = mysqli_query($connect, "SELECT * FROM penilaian_bul");
-                                                
+                                                $getID = $_GET['id'];
+                                                $db     = mysqli_query($connect, "SELECT * FROM detnilbul_vu WHERE id_nilai_bulanan = '$getID'");
+                                                $counter = 1;
+
                                             ?>
                                             <div class="d-flex flex-row mb-4">
-                                                <a href="tambah-nilbul.php?id=<?php echo $_GET['id'];?>" class="btn btn-sm btn-primary">+ Tambah Nilai</a>
+                                                <a href="tambah-detail-nilbul.php?id=<?php echo $getID;?>" class="btn btn-sm btn-primary">+ Tambah</a>
                                             </div>
                                             <table class="table table-striped" id="table1">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Tanggal</th>
                                                         <th>Kriteria Nilai</th>
                                                         <th>KKM</th>
                                                         <th>Skor</th>
@@ -108,31 +73,30 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php foreach ($db as $result) : ?>
+                                                    <tr>
+                                                        <td><?php echo $counter; ?></td>
+                                                        <td><?php echo $result['nama_kriteria_bulanan']; ?></td>
+                                                        <td><?php echo $result['nilai_kkm']; ?></td>
+                                                        <td><?php echo $result['nilai_bul']; ?></td>
+                                                        <?php
+                                                            if ($result['nilai_kkm'] <= $result['nilai_bul']) {
+                                                        ?>
+                                                        <td class="btn-azure">Tuntas</td>
+                                                        <?php
+                                                            }else{
+                                                        ?>
+                                                        <td class="btn-azure">Tidak Tuntas</td>
+                                                        <?php
+                                                            } 
+                                                        ?>
+                                                        <td>
+                                                            <a href="edit-detail-nilbul.php?id=<?php echo $result['id_nilai_bulanan']; ?>" class="btn btn-sm btn-info">Edit</a>
+                                                        </td>
+                                                    </tr>
                                                     <?php 
-                                                        while($result = mysqli_fetch_array($db1)) {  
-                                                    ?>
-                                                        <tr>
-                                                            <td><?php echo $counter; ?></td>
-                                                            <td><?php echo $result['tgl_ambil_nilai']; ?></td>
-                                                            <td><?php echo $result['id_kriteria_bulanan']; ?></td>
-                                                            <td><?php echo $result['nilai_kkm']; ?></td>
-                                                            <td><?php echo $result['nilai_bul']; ?></td>
-                                                            <?php
-                                                                if ($result['nilai_kkm'] <= $result['nilai_bul']) {
-                                                            ?>
-                                                            <td class="btn-azure">Tuntas</td>
-                                                            <?php
-                                                                }else{
-                                                            ?>
-                                                            <td class="btn-azure">Tidak Tuntas</td>
-                                                            <?php
-                                                                } 
-                                                            ?>
-                                                            <td><a href="edit-nilbul.php?id=<?php echo $result['noinduk_siswa']; ?>" class="btn btn-sm btn-warning">Edit</a></td>
-                                                        </tr>
-                                                    <?php
-                                                        $counter++; 
-                                                        } 
+                                                        $counter++;
+                                                        endforeach 
                                                     ?>
                                                 </tbody>
                                             </table>
