@@ -69,14 +69,14 @@
                                                 <td><?php echo $result['deskripsi_tugasprak']; ?></td>
                                                 <td><?php echo $result['start_tugas']; ?></td>
                                                 <td><?php echo $result['end_tugas']; ?></td>
-                                                <td><a href="edit-tugas.php?id_tugasprak=<?php echo $result['id_tugasprak']; ?>" class="btn btn-sm btn-warning">Edit</a></td>
+                                                <td><a href="edit-tugas.php?id_tugasprak=<?php echo $result['id_tugasprak']; ?>" 
+                                                class="btn btn-sm btn-info">Edit</a></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
                     </section>
                 </div>
                 

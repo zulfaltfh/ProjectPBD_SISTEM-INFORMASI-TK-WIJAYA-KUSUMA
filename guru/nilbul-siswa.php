@@ -13,12 +13,6 @@
     $db = mysqli_query($connect, $query);
     $counter = 1;
 
-    // $kriteria = mysqli_query($connect, "SELECT p.tgl_ambil_nilai, k.id_kriteria_harian, k.nama_kriteria_harian, p.nilai_kkm, p.nilai_har 
-    //                             FROM penilaian_har p, kriteria_nilai_harian k 
-    //                             WHERE k.id_kriteria_harian = p.id_kriteria_harian 
-    //                             AND p.noinduk_siswa = '".$_GET['id']."'");
-    // $noinduk = $_GET['id'];
-	// cek apakah yang mengakses halaman ini sudah login
     if (isset($_SESSION['user_logged'])) {
 ?>
 <body>
@@ -87,15 +81,12 @@
                                             </div>
                                             <hr> <!-- Divider -->
                                             <?php
-                                                // $query = "SELECT * FROM nilai_har WHERE noinduk_siswa = '".$_GET['id']."'";
-                                                // $db1 = mysqli_query($connect,$query);
                                                 $db1 = mysqli_query($connect, "SELECT * FROM nilai_bulanan WHERE noinduk_siswa = '".$_GET['id']."'");
-                                                // $ambil = $db1->fetch_assoc();
-                                                // $data = $ambil['id_nilai_harian'];
                                                 
                                             ?>
                                             <div class="d-flex flex-row mb-4">
-                                                <a href="tambah-nilbul.php?id=<?php echo $_GET['id'];?>" class="btn btn-sm btn-primary">+ Tambah</a>
+                                                <a href="tambah-nilbul.php?id=<?php echo $_GET['id'];?>" 
+                                                class="btn btn-sm btn-primary">+ Tambah</a>
                                             </div>
                                             <table class="table table-striped" id="table1">
                                                 <thead>
@@ -112,7 +103,8 @@
                                                         <tr>
                                                             <td><?php echo $result['id_nilai_bulanan']; ?></td>
                                                             <td><?php echo $result['bulan_ambil_nilai']; ?></td>
-                                                            <td><a href="detail-nilbul.php?id=<?php echo $result['id_nilai_bulanan']; ?>" class="btn btn-sm btn-primary">Detail</a></td>
+                                                            <td><a href="detail-nilbul.php?id=<?php echo $result['id_nilai_bulanan']; ?>" 
+                                                            class="btn btn-sm btn-primary">Detail</a></td>
                                                         </tr>
                                                     <?php
                                                         $counter++; 

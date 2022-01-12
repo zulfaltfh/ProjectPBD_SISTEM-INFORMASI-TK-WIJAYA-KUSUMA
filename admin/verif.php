@@ -8,7 +8,7 @@ $verif = mysqli_query($connect, "UPDATE pembayaran
 
 if($verif){
   echo "<script>alert('Verifikasi berhasil!'); </script>";
-  echo "<script>location.href='histori_bayar.php';</script>";
+  echo "<script>location.href='histori-bayar.php';</script>";
 }else{
   echo "<script>alert('Verifikasi gagal!'); </script>";
   echo "<script>location.href='bayar.php'; </script>";

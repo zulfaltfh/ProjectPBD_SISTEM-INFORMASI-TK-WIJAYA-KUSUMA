@@ -62,4 +62,19 @@
         echo "<script>alert('Nilai berhasil ditambahkan !');</script>";
         echo "<script>location.href='detail-nilbul.php?id=$id_nilai_bulanan'</script>"; 
     }
+
+    //proses tambah data raport siswa
+    if(isset($_POST['add2'])){
+
+        // $id_rapor = $_POST['id_rapor'];
+        $noinduk_siswa = $_POST['noinduk_siswa'];
+        $catatan = $_POST['cat_rapor'];
+        $tanggal = $_POST['tgl_ambil'];
+
+        $insert = "INSERT INTO raport VALUES (null,'$noinduk_siswa','$catatan','$tanggal')";
+        $hasil = mysqli_query($connect,$insert);
+
+        echo "<script>alert('Raport berhasil ditambahkan !');</script>";
+        echo "<script>location.href='detail-raport.php?id=$noinduk_siswa'</script>";
+    }
 ?>

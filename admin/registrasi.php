@@ -2,39 +2,40 @@
 <html lang="en">
 
 <head>
-    <?php include '../layout/header.php' ?>
+    <?php include '../layout-admin/header.php' ?>
 </head>
 <?php 
 	include "../config/config.php";
-    session_start();
 
     //ambil data dari db
-    $nip = $_SESSION['nip'];
-    $db = mysqli_query($connect, "SELECT * FROM siswa_vu WHERE nip_peg = '$nip'");
+    $query = "SELECT * FROM siswa WHERE status_daftar = '0'";
+    $db = mysqli_query($connect, $query);
     $counter = 1;
+
+    session_start();
  
 	// cek apakah yang mengakses halaman ini sudah login
     if (isset($_SESSION['user_logged'])) {
 ?>
 <body>
     <div id="app">
-        <?php include "../layout/sidebar.php" ?>
+        <?php include "../layout-admin/sidebar.php" ?>
 
         <div id="main" class='layout-navbar'>
-            <?php include "../layout/navbar.php" ?>
+            <?php include "../layout-admin/navbar.php" ?>
 
             <div id="main-content">
                 <div class="page-heading">
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Data Siswa Ajar</h3>
+                                <h3>Data Registrasi</h3>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Siswa</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Verifikasi Registrasi</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -44,43 +45,40 @@
                         <div class="card">
                             <div class="card-body">
                                 <table class="table table-striped" id="table1">
-                                <thead>
+                                    <thead>
                                         <tr>
-                                            <th>#</th>
                                             <th>NIS</th>
+                                            <th>NIK Walmur</th>
                                             <th>Nama Siswa</th>
-                                            <th>Kelas</th>
-                                            <th>Tahun Ajaran</th>
-                                            <th>Tingkat</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Masuk</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-                                            foreach($db as $result) :  
-                                        ?>
+                                        <?php foreach ($db as $regis): ?>
                                             <tr>
-                                                <td><?php echo $counter; ?></td>
-                                                <td><?php echo $result['noinduk_siswa']; ?></td>
-                                                <td><?php echo $result['nama_siswa']; ?></td>
-                                                <td><?php echo $result['nama_ruang_kelas']; ?></td>
-                                                <td><?php echo $result['tahunajar']; ?></td>
-                                                <td><?php echo $result['tingkatTK']; ?></td>
-                                                <td><a href="detail-siswa.php?id=<?php echo $result['noinduk_siswa']; ?>" 
-                                                class="btn btn-sm btn-primary">Detail</a></td>
+                                                <td><?php echo $regis['noinduk_siswa']?></td>
+                                                <td><?php echo $regis['NIK_walmur']?></td>
+                                                <td><?php echo $regis['nama_siswa']?></td>
+                                                <td><?php echo $regis['tgllahir']?></td>
+                                                <td><?php echo $regis['tgl_masuk']?></td>
+                                                <td><?php echo $regis['status_daftar']==0?"menunggu":"terdaftar"?></td>
+                                                <td>
+                                                    <a href="verif-regis.php?id=<?php echo $regis['noinduk_siswa'];?>" class="btn btn-success btn-block btn-sm ">VERIFY</a>
+                                                </td>
                                             </tr>
-                                        <?php 
-                                            $counter++;
-                                            endforeach 
-                                        ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                     </section>
                 </div>
                 
-                <?php include "../layout/footer.php" ?>
+                <?php include "../layout-admin/footer.php" ?>
             </div>
         </div>
     </div>

@@ -45,9 +45,6 @@
                     <section class="section">
                         <div class="card">
                             <div class="card-body">
-                                <!-- <div class="d-flex flex-row mb-4">
-                                    <a href="tambah-tugas.php" class="btn btn-sm btn-primary">+ Tambah Tugas</a>
-                                </div> -->
                                 <table class="table table-striped" id="table1">
                                     <thead class="text-center">
                                         <tr>

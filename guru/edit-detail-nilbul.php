@@ -8,7 +8,7 @@
 	include "../config/config.php";
     session_start();
 
-    $query      = "SELECT * FROM terdiri WHERE id_kriteria_harian = '".$_GET['id']."'";
+    $query      = "SELECT * FROM terdiri2 WHERE id_kriteria_bulanan = '".$_GET['id']."'";
     $db         = mysqli_query($connect,$query);
 
     $row = mysqli_fetch_array($db);
@@ -30,7 +30,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Tambah Detail Nilai Harian</h3>
+                            <h3>Tambah Detail Nilai Bulanan</h3>
                         </div>
                     </div>
                 </div>
@@ -47,29 +47,29 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label for="id_nilai_harian"><b>Id Nilai Harian</b></label>
-                                                            <input type="text" id="id_nilai_harian" class="form-control" 
-                                                            name="id_nilai_harian" readonly value="<?php echo $row['id_nilai_harian']; ?>">
+                                                            <label for="id_nilai_bulanan"><b>Id Nilai Bulanan</b></label>
+                                                            <input type="text" id="id_nilai_bulanan" class="form-control" 
+                                                            name="id_nilai_bulanan" readonly value="<?php echo $row['id_nilai_bulanan']; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label for="nama_kriteria_harian"><b>Kriteria Nilai</b></label>
+                                                            <label for="nama_kriteria_bulanan"><b>Kriteria Nilai</b></label>
                                                             <fieldset class="form-group">
-                                                              <select id="e1" style="width:100%;" name="id_kriteria_harian" 
-                                                                class="form-select" id="nama_kriteria_harian" required>
+                                                                <select id="e1" style="width:100%;" name="id_kriteria_bulanan" 
+                                                                class="form-select" id="nama_kriteria_bulanan" required>
                                                                     <?php 
-                                                                        $kriteria = $connect->query("SELECT * FROM kriteria_nilai_harian 
-                                                                                                    WHERE id_kriteria_harian ='".$_GET['id']."'");
+                                                                        $kriteria = $connect->query("SELECT * FROM kriteria_nilai_bulanan 
+                                                                                                    WHERE id_kriteria_bulanan ='".$_GET['id']."'");
                                                                         while ($data=mysqli_fetch_array($kriteria)) {
                                                                     ?>
-                                                                        <option value="<?php echo $data['id_kriteria_harian']; ?>">
-                                                                            <?php echo $data['nama_kriteria_harian']; ?>
+                                                                        <option value="<?php echo $data['id_kriteria_bulanan']; ?>">
+                                                                            <?php echo $data['nama_kriteria_bulanan']; ?>
                                                                         </option>
                                                                     <?php
                                                                         }
                                                                     ?>                                                                
-                                                              </select>
+                                                                </select>
                                                             </fieldset>
                                                         </div>
                                                     </div>
@@ -82,9 +82,9 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label for="nilai_har"><b>Skor</b></label>
-                                                            <input type="text" id="nilai_har" class="form-control" 
-                                                            name="nilai_har" value="<?php echo $row['nilai_har'] ?>" required>
+                                                            <label for="nilai_bul"><b>Skor</b></label>
+                                                            <input type="text" id="nilai_bul" class="form-control"
+                                                            name="nilai_bul" value="<?php echo $row['nilai_bul'] ?>" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 d-flex justify-content-end mt-5">
@@ -97,23 +97,23 @@
                                         <?php
                                           if (isset($_POST['simpan'])){
 
-                                            $id_nilai_harian    = $_POST['id_nilai_harian'];
-                                            $id_kriteria_harian = $_POST['id_kriteria_harian'];
+                                            $id_nilai_bulanan    = $_POST['id_nilai_bulanan'];
+                                            $id_kriteria_bulanan = $_POST['id_kriteria_bulanan'];
                                             $nilai_kkm          = $_POST['nilai_kkm'];
-                                            $nilai_har          = $_POST['nilai_har'];
+                                            $nilai_bul          = $_POST['nilai_bul'];
                                     
                                             
-                                            $update = "UPDATE terdiri 
+                                            $update = "UPDATE terdiri2 
                                                         SET 
-                                                          id_nilai_harian = '$id_nilai_harian',
-                                                          id_kriteria_harian = '$id_kriteria_harian',
+                                                          id_nilai_bulanan = '$id_nilai_bulanan',
+                                                          id_kriteria_bulanan = '$id_kriteria_bulanan',
                                                           nilai_kkm = '$nilai_kkm',
-                                                          nilai_har = '$nilai_har'
-                                                        WHERE id_nilai_harian = '$id_nilai_harian' AND id_kriteria_harian = '$id_kriteria_harian'";
+                                                          nilai_bul = '$nilai_bul'
+                                                        WHERE id_nilai_bulanan = '$id_nilai_bulanan' AND id_kriteria_bulanan = '$id_kriteria_bulanan'";
                                             $hasil  = mysqli_query($connect, $update);
                                     
                                             echo "<script>alert('Nilai berhasil diperbarui !');</script>";
-                                            echo "<script>location.href='detail-nilhar.php?id=$id_nilai_harian'</script>"; 
+                                            echo "<script>location.href='detail-nilbul.php?id=$id_nilai_bulanan'</script>"; 
                                           }
                                           
                                         ?>

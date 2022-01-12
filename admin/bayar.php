@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <?php include '../layout/header.php' ?>
+    <?php include '../layout-admin/header.php' ?>
 </head>
 <?php 
 	include "../config/config.php";
@@ -19,10 +19,10 @@
 ?>
 <body>
     <div id="app">
-        <?php include "../layout/sidebar.php" ?>
+        <?php include "../layout-admin/sidebar.php" ?>
 
         <div id="main" class='layout-navbar'>
-            <?php include "../layout/navbar.php" ?>
+            <?php include "../layout-admin/navbar.php" ?>
 
             <div id="main-content">
                 <div class="page-heading">
@@ -52,7 +52,7 @@
                                             <th>Jenis</th>
                                             <th>Tanggal Bayar</th>
                                             <th>Jumlah Bayar</th>
-                                            <th>Status</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,7 +64,8 @@
                                                 <td><?php echo $pembayaran['tgl_bayar']?></td>
                                                 <td><?php echo $pembayaran['jumlah_bayar']?></td>
                                                 <td>
-                                                    <a href="verif.php?id=<?php echo $pembayaran['no_bayar'];?>" class="btn btn-success btn-block btn-sm shadow-lg mt-0 ">VERIFY</a>
+                                                    <a href="verif.php?id=<?php echo $pembayaran['no_bayar'];?>" 
+                                                    class="btn btn-success btn-block btn-sm shadow-lg mt-0 ">VERIFY</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -72,11 +73,10 @@
                                 </table>
                             </div>
                         </div>
-
                     </section>
                 </div>
                 
-                <?php include "../layout/footer.php" ?>
+                <?php include "../layout-admin/footer.php" ?>
             </div>
         </div>
     </div>

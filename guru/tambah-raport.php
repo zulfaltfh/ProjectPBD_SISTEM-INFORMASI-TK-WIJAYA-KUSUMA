@@ -7,14 +7,8 @@
 <?php 
 	include "../config/config.php";
     session_start();
-
-    // $kriteria   = "SELECT * FROM kriteria_nilai_bulanan";
-    // $db2        = mysqli_query($connect,$kriteria);
-
-    $query      = "SELECT * FROM siswa_vu WHERE noinduk_siswa = '".$_GET['id']."'";
+    $query      = "SELECT * FROM raport";
     $db         = mysqli_query($connect,$query);
-    $siswa      = $db->fetch_assoc();
-    $id         = $siswa['noinduk_siswa'];
 
 	// cek apakah yang mengakses halaman ini sudah login
     if (isset($_SESSION['user_logged'])) {
@@ -33,18 +27,8 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Tambah Nilai Bulanan</h3>
+                            <h3>Tambah Isi Raport</h3>
                         </div>
-                        <!-- <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="../guru/dashboard.php">Dashboard</a></li>
-                                    <li class="breadcrumb-item" aria-current="page">Tugas</li>
-                                    <li class="breadcrumb-item"><a href="../guru/tugas.php">Tugas Prakarya</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tambah Tugas</li>
-                                </ol>
-                            </nav>
-                        </div> -->
                     </div>
                 </div>
                 <!-- Basic Vertical form layout section start -->
@@ -61,17 +45,23 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="tgl_ambil_nilai"><b>NIS</b></label>
-                                                            <input type="text" id="tgl_ambil_nilai" class="form-control" name="noinduk_siswa" readonly value="<?php echo $id; ?>">
+                                                            <input type="text" id="tgl_ambil_nilai" class="form-control" name="noinduk_siswa" readonly value="<?php echo $_GET['id']; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label for="bulan_ambil_nilai"><b>Tanggal Ambil</b></label>
-                                                            <input type="date" id="bulan_ambil_nilai" class="form-control" name="bulan_ambil_nilai" required>
+                                                            <label for="tgl_ambil_nilai"><b>Tanggal Ambil</b></label>
+                                                            <input type="date" id="tgl_ambil_nilai" class="form-control" name="tgl_ambil" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="cat_rapor"><b>Catatan Raport</b></label>
+                                                            <textarea class="form-control" id="cat_rapor" name="cat_rapor" rows="3" maxlength="100" required></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 d-flex justify-content-end mt-5">
-                                                        <button type="submit" class="btn btn-primary me-2 mb-1" name="add" value="add">Tambah</button>
+                                                        <button type="submit" class="btn btn-primary me-2 mb-1" name="add2" value="add2">Tambah</button>
                                                         <button type="button" class="btn btn-secondary me-2 mb-1" onclick="self.history.back()">Batal</button>
                                                     </div>
                                                 </div>
@@ -90,9 +80,13 @@
     </div>
     <script src="../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Include Choices JavaScript -->
-    <script src="assets/vendors/choices.js/choices.min.js"></script>
+    <!-- <script src="../assets/vendors/jquery/jquery.min.js"></script>
+    <script src="../assets/vendors/tinymce/tinymce.min.js"></script>
+    <script src="../assets/vendors/tinymce/plugins/code/plugin.min.js"></script>
+    <script>
+        tinymce.init({ selector: '#default' });
+        tinymce.init({ selector: '#dark', toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code', plugins: 'code' });
+    </script> -->
 
     <script src="../assets/js/main.js"></script>
 </body>

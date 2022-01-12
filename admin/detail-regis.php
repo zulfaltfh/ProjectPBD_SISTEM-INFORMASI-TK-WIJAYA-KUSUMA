@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <?php include '../layout/header.php' ?>
+    <?php include '../layout-admin/header.php' ?>
 </head>
 <?php 
 	include "../config/config.php";
@@ -20,10 +20,10 @@
 ?>
 <body>
     <div id="app">
-        <?php include "../layout/sidebar.php" ?>
+        <?php include "../layout-admin/sidebar.php" ?>
 
         <div id="main" class='layout-navbar'>
-            <?php include "../layout/navbar.php" ?>
+            <?php include "../layout-admin/navbar.php" ?>
 
             <div id="main-content">
                 <div class="page-heading">
@@ -156,7 +156,7 @@
                     </section>
                 </div>
             </div>
-                <?php include "../layout/footer.php" ?>
+                <?php include "../layout-admin/footer.php" ?>
           </div>
     </div>
     <script src="../assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>

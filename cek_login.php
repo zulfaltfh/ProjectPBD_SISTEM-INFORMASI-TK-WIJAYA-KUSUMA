@@ -6,7 +6,7 @@ session_start();
 include ('config/config.php');
 
 if (isset($_SESSION['user_logged'])) {
-	header('location: guru/dashboard.php');
+	header('location: admin/dashboard.php');
 }
 
 if (isset($_POST['login'])) {
@@ -19,23 +19,24 @@ if (isset($_POST['login'])) {
 		$user = mysqli_fetch_assoc($query);
 		$nama = $user['nama_peg'];
 		$nip	= $user['nip_peg'];
+		$role = $user['role'];
 
 		$_SESSION['user_logged'] = true;
 		$_SESSION['user_name'] = $user['username'];
+		$_SESSION['user_role'] = $user['role'];
 		$_SESSION['nama'] = $nama;
 		$_SESSION['nip'] = $nip;
-		// $_SESSION['user_role'] = $user['role'];
+		$_SESSION['role'] = $role;
 
-		// if ($user['role'] == 'user') {
-		// 	header('location:dashboard-user.php');
-		// } elseif ($user['role'] == 'admin') {
-		// 	header('location:dashboard.php');
-		// }
+		if ($user['role'] == 'guru') {
+			header('location:guru/dashboard.php');
+		} elseif ($user['role'] == 'admin') {
+			header('location:admin/dashboard.php');
+		}
 
 		
 	} else {
 		echo "<script>alert('Username atau Password anda salah!');history.go(-1);</script>";
 	}
 }
-
 ?>

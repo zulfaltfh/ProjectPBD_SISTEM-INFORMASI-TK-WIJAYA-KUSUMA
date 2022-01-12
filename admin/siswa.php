@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <?php include '../layout/header.php' ?>
+    <?php include '../layout-admin/header.php' ?>
 </head>
 <?php 
 	include "../config/config.php";
 
     //ambil data dari db
-    $query = "SELECT * FROM pembayaran_vu WHERE status_bayar = '1'";
+    $query = "SELECT * FROM siswa WHERE status_daftar = '1' ";
     $db = mysqli_query($connect, $query);
     $counter = 1;
 
@@ -19,23 +19,23 @@
 ?>
 <body>
     <div id="app">
-        <?php include "../layout/sidebar.php" ?>
+        <?php include "../layout-admin/sidebar.php" ?>
 
         <div id="main" class='layout-navbar'>
-            <?php include "../layout/navbar.php" ?>
+            <?php include "../layout-admin/navbar.php" ?>
 
             <div id="main-content">
                 <div class="page-heading">
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Data Pembayaran</h3>
+                                <h3>Data Siswa</h3>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Pembayaran</li>
+                                        <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Siswa</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -47,25 +47,29 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>No Bayar</th>
                                             <th>NIS</th>
-                                            <th>Jenis</th>
-                                            <th>Tanggal Bayar</th>
-                                            <th>Jumlah Bayar</th>
-                                            <th>Status</th>
+                                            <th>Walimurid</th>
+                                            <th>Nama Siswa</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Lahir</th>
+                                            <th>Masuk</th>
+                                            <th>Lulus</th>
+                                            <th>Alamat</th>
+                                            <th>Anak ke</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($db as $pembayaran): ?>
+                                        <?php foreach ($db as $siswa): ?>
                                             <tr>
-                                                <td><?php echo $pembayaran['no_bayar']?></td>
-                                                <td><?php echo $pembayaran['noinduk_siswa']?></td>
-                                                <td><?php echo $pembayaran['nama_jenis']?></td>
-                                                <td><?php echo $pembayaran['tgl_bayar']?></td>
-                                                <td><?php echo $pembayaran['jumlah_bayar']?></td>
-                                                <td>
-                                                  <a href="" class="btn btn-secondary-disable  btn-block btn-sm">VERIFIED</a>
-                                                </td>
+                                                <td class="text-wrap"><?php echo $siswa['noinduk_siswa']?></td>
+                                                <td><?php echo $siswa['NIK_walmur']?></td>
+                                                <td><?php echo $siswa['nama_siswa']?></td>
+                                                <td><?php echo $siswa['jenis_kelamin']==0?"L":"P"?></td>
+                                                <td><?php echo $siswa['tgllahir']?></td>
+                                                <td><?php echo $siswa['tgl_masuk']?></td>
+                                                <td><?php echo $siswa['tgl_lulus']?></td>
+                                                <td><?php echo $siswa['alamat']?></td>
+                                                <td class="text-center"><?php echo $siswa['anak_ke']?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -76,7 +80,7 @@
                     </section>
                 </div>
                 
-                <?php include "../layout/footer.php" ?>
+                <?php include "../layout-admin/footer.php" ?>
             </div>
         </div>
     </div>
@@ -95,6 +99,6 @@
 </html>
 <?php
 } else {
-    header('location: ../../index.php');
+    header('location: ../index.php');
 }
 ?>

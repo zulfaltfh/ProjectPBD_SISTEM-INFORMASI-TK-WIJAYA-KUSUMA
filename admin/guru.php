@@ -2,33 +2,33 @@
 <html lang="en">
 
 <head>
-    <?php include '../layout/header.php' ?>
+    <?php include '../layout-admin/header.php' ?>
 </head>
 <?php 
-	include "../config/config.php";
+	  include "../config/config.php";
     session_start();
 
     //ambil data dari db
-    $nip = $_SESSION['nip'];
-    $db = mysqli_query($connect, "SELECT * FROM siswa_vu WHERE nip_peg = '$nip'");
+    $query = "SELECT * FROM pegawai";
+    $db = mysqli_query($connect, $query);
     $counter = 1;
- 
+
 	// cek apakah yang mengakses halaman ini sudah login
     if (isset($_SESSION['user_logged'])) {
 ?>
 <body>
     <div id="app">
-        <?php include "../layout/sidebar.php" ?>
+        <?php include "../layout-admin/sidebar.php" ?>
 
         <div id="main" class='layout-navbar'>
-            <?php include "../layout/navbar.php" ?>
+            <?php include "../layout-admin/navbar.php" ?>
 
             <div id="main-content">
                 <div class="page-heading">
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3>Data Siswa Ajar</h3>
+                                <h3>Data Pegawai</h3>
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -44,35 +44,31 @@
                         <div class="card">
                             <div class="card-body">
                                 <table class="table table-striped" id="table1">
-                                <thead>
+                                    <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>NIS</th>
-                                            <th>Nama Siswa</th>
-                                            <th>Kelas</th>
-                                            <th>Tahun Ajaran</th>
-                                            <th>Tingkat</th>
-                                            <th>Aksi</th>
+                                            <th>NIP</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Alamat</th>
+                                            <th>No Telepon</th>
+                                            <th>Email</th>
+                                            <th>Tanggal Masuk</th>
+                                            <th>Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-                                            foreach($db as $result) :  
-                                        ?>
+                                        <?php foreach ($db as $guru): ?>
                                             <tr>
-                                                <td><?php echo $counter; ?></td>
-                                                <td><?php echo $result['noinduk_siswa']; ?></td>
-                                                <td><?php echo $result['nama_siswa']; ?></td>
-                                                <td><?php echo $result['nama_ruang_kelas']; ?></td>
-                                                <td><?php echo $result['tahunajar']; ?></td>
-                                                <td><?php echo $result['tingkatTK']; ?></td>
-                                                <td><a href="detail-siswa.php?id=<?php echo $result['noinduk_siswa']; ?>" 
-                                                class="btn btn-sm btn-primary">Detail</a></td>
+                                                <td><?php echo $guru['nip_peg']?></td>
+                                                <td><?php echo $guru['nama_peg']?></td>
+                                                <td class="text-center"><?php echo $guru['jk_peg']==0?"L":"P"?></td>
+                                                <td><?php echo $guru['alamat_peg']?></td>
+                                                <td><?php echo $guru['notelp_peg']?></td>
+                                                <td><?php echo $guru['email_peg']?></td>
+                                                <td><?php echo $guru['tglmasuk_peg']?></td>
+                                                <td><?php echo $guru['role']?></td>
                                             </tr>
-                                        <?php 
-                                            $counter++;
-                                            endforeach 
-                                        ?>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -80,7 +76,7 @@
                     </section>
                 </div>
                 
-                <?php include "../layout/footer.php" ?>
+                <?php include "../layout-admin/footer.php" ?>
             </div>
         </div>
     </div>

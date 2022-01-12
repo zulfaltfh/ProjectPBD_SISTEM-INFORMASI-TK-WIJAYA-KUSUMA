@@ -8,9 +8,6 @@
 	include "../config/config.php";
     session_start();
 
-    // $kriteria   = "SELECT * FROM kriteria_nilai_harian";
-    // $db2        = mysqli_query($connect,$kriteria);
-
     $query      = "SELECT * FROM nilai_harian WHERE noinduk_siswa = '".$_GET['id']."'";
     $db         = mysqli_query($connect,$query);
 
@@ -34,16 +31,6 @@
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>Tambah Nilai Harian</h3>
                         </div>
-                        <!-- <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="../guru/dashboard.php">Dashboard</a></li>
-                                    <li class="breadcrumb-item" aria-current="page">Tugas</li>
-                                    <li class="breadcrumb-item"><a href="../guru/tugas.php">Tugas Prakarya</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tambah Tugas</li>
-                                </ol>
-                            </nav>
-                        </div> -->
                     </div>
                 </div>
                 <!-- Basic Vertical form layout section start -->
@@ -60,18 +47,22 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="tgl_ambil_nilai"><b>NIS</b></label>
-                                                            <input type="text" id="tgl_ambil_nilai" class="form-control" name="noinduk_siswa" readonly value="<?php echo $_GET['id']; ?>">
+                                                            <input type="text" id="tgl_ambil_nilai" class="form-control" 
+                                                            name="noinduk_siswa" readonly value="<?php echo $_GET['id']; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="tgl_ambil_nilai"><b>Tanggal Ambil</b></label>
-                                                            <input type="date" id="tgl_ambil_nilai" class="form-control" name="tgl_ambil_nilai">
+                                                            <input type="date" id="tgl_ambil_nilai"
+                                                            class="form-control" name="tgl_ambil_nilai" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 d-flex justify-content-end mt-5">
-                                                        <button type="submit" class="btn btn-primary me-2 mb-1" name="tambah" value="tambah">Tambah</button>
-                                                        <button type="button" class="btn btn-secondary me-2 mb-1" onclick="self.history.back()">Batal</button>
+                                                        <button type="submit" class="btn btn-primary me-2 mb-1" 
+                                                        name="tambah" value="tambah">Tambah</button>
+                                                        <button type="button" class="btn btn-secondary me-2 mb-1" 
+                                                        onclick="self.history.back()">Batal</button>
                                                     </div>
                                                 </div>
                                             </div>
