@@ -58,8 +58,8 @@
                                                         <div class="form-group">
                                                             <label for="deskripsi_tugasprak">Deskripsi Tugas</label>
                                                             <textarea class="form-control" id="deskripsi_tugasprak"
-                                                                name="deskripsi_tugasprak" value="" 
-                                                                rows="6" maxlength="50" required>
+                                                                name="deskripsi_tugasprak" value="<?php echo $row['deskripsi_tugasprak'];?>" 
+                                                                rows="3" maxlength="50" required>
                                                                 <?php echo $row['deskripsi_tugasprak'];?>
                                                             </textarea>
                                                         </div>

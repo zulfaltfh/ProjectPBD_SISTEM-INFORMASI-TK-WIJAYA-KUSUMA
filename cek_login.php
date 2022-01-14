@@ -10,27 +10,26 @@ if (isset($_SESSION['user_logged'])) {
 }
 
 if (isset($_POST['login'])) {
-	$username= $_POST['username'];
+	$username = $_POST['username'];
 	$password = $_POST['password'];
 
 	$query 	= mysqli_query($connect, "SELECT * FROM pegawai WHERE nip_peg = '" . $username . "' AND password = '" . $password . "'");
 
 	if (mysqli_num_rows($query) > 0) {
-		$user = mysqli_fetch_assoc($query);
-		$nama = $user['nama_peg'];
-		$nip	= $user['nip_peg'];
-		$role = $user['role'];
+		$pegawai = mysqli_fetch_assoc($query);
+		$nama = $pegawai['nama_peg'];
+		$nip	= $pegawai['nip_peg'];
+		$role = $pegawai['role'];
 
 		$_SESSION['user_logged'] = true;
-		$_SESSION['user_name'] = $user['username'];
-		$_SESSION['user_role'] = $user['role'];
+		$_SESSION['user_name'] = $pegawai['username'];
+		$_SESSION['user_role'] = $pegawai['role'];
 		$_SESSION['nama'] = $nama;
 		$_SESSION['nip'] = $nip;
-		$_SESSION['role'] = $role;
 
-		if ($user['role'] == 'guru') {
+		if ($pegawai['role'] == 'guru') {
 			header('location:guru/dashboard.php');
-		} elseif ($user['role'] == 'admin') {
+		} elseif ($pegawai['role'] == 'admin') {
 			header('location:admin/dashboard.php');
 		}
 

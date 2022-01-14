@@ -3,7 +3,7 @@
     session_start();
     
     //ambil data dari db
-    $db = mysqli_query($connect, "SELECT * FROM tugas_prakarya ORDER BY id_tugasprak ASC");
+    $db = mysqli_query($connect, "SELECT * FROM tugas_prakarya ORDER BY id_tugasprak");
     $counter = 1;
 
 	// cek apakah yang mengakses halaman ini sudah login
@@ -69,8 +69,15 @@
                                                 <td><?php echo $result['deskripsi_tugasprak']; ?></td>
                                                 <td><?php echo $result['start_tugas']; ?></td>
                                                 <td><?php echo $result['end_tugas']; ?></td>
-                                                <td><a href="edit-tugas.php?id_tugasprak=<?php echo $result['id_tugasprak']; ?>" 
-                                                class="btn btn-sm btn-info">Edit</a></td>
+                                                <td>
+                                                    <a href="edit-tugas.php?id_tugasprak=<?php echo $result['id_tugasprak']; ?>" 
+                                                        class="btn btn-sm btn-info">Edit
+                                                    </a>
+                                                    <a href="hapus-tugas.php?id=<?php echo $result['id_tugasprak']; ?>">
+                                                        <button type="submit" class="btn btn-danger btn-sm" 
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

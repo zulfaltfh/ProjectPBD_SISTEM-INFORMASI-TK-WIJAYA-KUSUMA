@@ -84,16 +84,12 @@
                                             if (isset($_POST['tambah'])){
 
                                                 //values
-                                                $id_tugasprak           = $_POST['id_tugasprak'];
                                                 $nama_tugasprak         = $_POST['nama_tugasprak'];
                                                 $deskripsi_tugasprak    = $_POST['deskripsi_tugasprak'];
                                                 $start_tugas            = $_POST['start_tugas'];
                                                 $end_tugas              = $_POST['end_tugas'];
                                             
-                                                $sql = "INSERT INTO tugas_prakarya
-                                                    (id_tugasprak,nama_tugasprak,deskripsi_tugasprak, 
-                                                    start_tugas,end_tugas)
-                                                    VALUES 
+                                                $sql = "INSERT INTO tugas_prakarya VALUES 
                                                     (null,'$nama_tugasprak','$deskripsi_tugasprak',
                                                     '$start_tugas','$end_tugas')";
 

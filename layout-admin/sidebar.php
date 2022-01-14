@@ -42,6 +42,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a href="../admin/kelas-ajar.php" class='sidebar-link'>
+                        <i class="bi bi-book-fill"></i>
+                        <span>Kelompok Belajar</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-credit-card-2-front-fill"></i>

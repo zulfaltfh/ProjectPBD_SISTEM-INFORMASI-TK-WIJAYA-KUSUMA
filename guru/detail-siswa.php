@@ -9,7 +9,7 @@
   session_start();
 
   //ambil data dari db
-  $query = "SELECT * FROM siswa WHERE siswa.noinduk_siswa = '".$_GET['id']."'";
+  $query = "SELECT * FROM siswa WHERE noinduk_siswa = '".$_GET['id']."'";
   $db = mysqli_query($connect, $query);
   $counter = 1;
 
@@ -105,13 +105,6 @@
                                                         <label for="email-id-column">Lulus</label>
                                                         <input type="text" id="email-id-column" class="form-control"
                                                             name="tgl_masuk" readonly value="<?=$data['tgl_lulus']?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="country-floating">Jenis Kelamin</label>
-                                                        <input type="text" id="country-floating" class="form-control"
-                                                            name="jenis_kelamin" readonly value="<?=$data['jenis_kelamin']==0?"L":"P"?>"> 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-12">
